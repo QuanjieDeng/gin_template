@@ -1,0 +1,544 @@
+definitions:
+  app.Response:
+    properties:
+      code:
+        type: integer
+      data:
+        type: object
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+  description: gvp是语音平台的后台管理接口服务器
+  license: {}
+  title: GVP API
+  version: 0.0.1
+paths:
+  /api/v1/bind:
+    get:
+      parameters:
+      - description: 游戏名称
+        in: query
+        name: gameid
+        type: integer
+      - description: 游戏名称
+        in: query
+        name: serviceid
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取多个绑定关系
+    post:
+      parameters:
+      - description: 游戏名称
+        in: formData
+        maxLength: 100
+        name: game
+        required: true
+        type: string
+      - description: 服务ID
+        in: formData
+        name: serviceid
+        required: true
+        type: integer
+      - description: 游戏ID
+        in: formData
+        name: gameid
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 添加绑定关系
+  /api/v1/bind/{id}:
+    delete:
+      parameters:
+      - description: 绑定关系ID
+        in: path
+        minimum: 1
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 删除绑定关系
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取单个绑定信息
+  /api/v1/client/svc:
+    get:
+      parameters:
+      - description: 游戏用户appid
+        in: query
+        name: appid
+        required: true
+        type: string
+      - description: 游戏用户appkey
+        in: query
+        name: appkey
+        required: true
+        type: string
+      - description: 服务商名称
+        in: query
+        name: svcname
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取服务商信息
+  /api/v1/game:
+    get:
+      parameters:
+      - description: 账号状态0 锁定 1 正常
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 游戏名称
+        in: query
+        name: game
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取多个游戏信息
+    post:
+      parameters:
+      - description: 游戏名称
+        in: formData
+        maxLength: 100
+        name: game
+        required: true
+        type: string
+      - description: 游戏类型
+        enum:
+        - 1
+        - 7
+        in: formData
+        name: gametype
+        required: true
+        type: integer
+      - description: 手机号码
+        in: formData
+        maxLength: 100
+        name: telnum
+        required: true
+        type: string
+      - description: 创建人
+        in: formData
+        maxLength: 100
+        name: createdby
+        required: true
+        type: string
+      - description: 状态
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: state
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 添加游戏
+  /api/v1/game/{id}:
+    delete:
+      parameters:
+      - description: 游戏ID
+        in: path
+        minimum: 1
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 删除游戏
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取单个游戏信息
+    put:
+      parameters:
+      - description: 游戏ID
+        in: path
+        minimum: 1
+        name: id
+        required: true
+        type: integer
+      - description: 游戏名称
+        in: body
+        maxLength: 100
+        name: game
+        required: true
+        schema:
+          type: string
+      - description: 游戏类型
+        enum:
+        - 1
+        - 2
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        in: body
+        name: gametype
+        required: true
+        schema:
+          type: integer
+      - description: 手机号码
+        in: body
+        maxLength: 100
+        name: telnum
+        required: true
+        schema:
+          type: string
+      - description: 本次修改人
+        in: body
+        maxLength: 100
+        name: modifiedby
+        required: true
+        schema:
+          type: string
+      - description: 状态
+        enum:
+        - "0"
+        - "1"
+        in: body
+        name: state
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 修改游戏信息
+  /api/v1/svc:
+    get:
+      parameters:
+      - description: 服务状态0 锁定 1 正常
+        enum:
+        - 0
+        - 1
+        in: query
+        name: state
+        type: integer
+      - description: 服务商名称
+        in: query
+        name: name
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取多个服务商信息
+    post:
+      parameters:
+      - description: 服务商名称
+        in: formData
+        maxLength: 100
+        name: name
+        required: true
+        type: string
+      - description: 服务商appid
+        in: formData
+        maxLength: 100
+        name: appid
+        required: true
+        type: string
+      - description: 服务商appkey
+        in: formData
+        maxLength: 100
+        name: appkey
+        required: true
+        type: string
+      - description: 服务商userid
+        in: formData
+        maxLength: 100
+        name: userid
+        required: true
+        type: string
+      - description: 服务商url
+        in: formData
+        maxLength: 100
+        name: url
+        required: true
+        type: string
+      - description: 服务商描述信息
+        in: formData
+        maxLength: 300
+        name: description
+        required: true
+        type: string
+      - description: 本次修改人
+        in: formData
+        maxLength: 100
+        name: createdby
+        required: true
+        type: string
+      - description: 状态
+        enum:
+        - 0
+        - 1
+        in: formData
+        name: state
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 添加服务商信息
+  /api/v1/svc/{id}:
+    delete:
+      parameters:
+      - description: 服务商ID
+        in: path
+        minimum: 1
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 删除服务商
+    get:
+      parameters:
+      - description: ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 获取单个服务商信息
+    put:
+      parameters:
+      - description: 服务商ID
+        in: path
+        minimum: 1
+        name: id
+        required: true
+        type: integer
+      - description: 服务商名称
+        in: body
+        maxLength: 100
+        name: name
+        schema:
+          type: string
+      - description: 服务商appid
+        in: body
+        maxLength: 100
+        name: appid
+        schema:
+          type: string
+      - description: 服务商appkey
+        in: body
+        maxLength: 100
+        name: appkey
+        schema:
+          type: string
+      - description: 服务商userid
+        in: body
+        maxLength: 100
+        name: userid
+        schema:
+          type: string
+      - description: 服务商url
+        in: body
+        maxLength: 100
+        name: url
+        schema:
+          type: string
+      - description: 服务商描述信息
+        in: body
+        maxLength: 300
+        name: description
+        schema:
+          type: string
+      - description: 本次修改人
+        in: body
+        maxLength: 100
+        name: modifiedby
+        required: true
+        schema:
+          type: string
+      - description: 状态
+        enum:
+        - 0
+        - 1
+        in: body
+        name: state
+        schema:
+          type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 修改服务商信息
+  /auth:
+    get:
+      parameters:
+      - description: 用户名
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 密码
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 成功
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: 失败
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 根据用户名和密码获取token
+swagger: "2.0"

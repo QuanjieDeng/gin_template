@@ -1,0 +1,11 @@
+package e
+
+const (
+	GAME_TYPE_MOBA 		= 1
+	GAME_TYPE_RPG 		= 2
+	GAME_TYPE_ARPG 		= 3
+	GAME_TYPE_ACG 		= 4
+	GAME_TYPE_FPS 		= 5
+	GAME_TYPE_TPS 		= 6
+	GAME_TYPE_OTHER 	= 7
+)
