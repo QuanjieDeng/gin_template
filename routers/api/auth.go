@@ -7,6 +7,7 @@ import (
 	"gvp/pkg/e"
 	"gvp/pkg/util"
 	"gvp/pkg/app"
+	"gvp/pkg/setting"
 	"gvp/service/auth_service"
 	log  "gvp/pkg/logging"
 )
@@ -49,7 +50,7 @@ func GetAuth(c *gin.Context) {
 		appG.Response(http.StatusUnauthorized,e.ERROR_AUTH,nil)
 		return
 	}
-	token, err := util.GenerateToken(username, password)
+	token, err := util.GenerateToken(username, password,setting.AppSetting.AuthExpire)
 	if err != nil {
 		log.Error("auth-check  username:",username,"GenerateToken err:",err)
 		appG.Response(http.StatusInternalServerError,e.ERROR_AUTH_TOKEN,nil)

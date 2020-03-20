@@ -30,11 +30,11 @@ func main() {
 
 	server := endless.NewServer(endPoint, routers.InitRouter())
 	server.BeforeBegin = func(add string) {
-		log.Info("Actual pid is %d", syscall.Getpid())
+		log.Info("Actual pid is:", syscall.Getpid())
 	}
 
 	err := server.ListenAndServe()
 	if err != nil {
-		log.Info("Server err: %v", err)
+		log.Info("Server err:", err)
 	}
 }

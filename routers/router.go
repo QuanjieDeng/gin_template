@@ -9,7 +9,7 @@ import (
 	"gvp/pkg/setting"
 	"gvp/routers/api/v1"
 	"gvp/routers/api"
-	//"gvp/middleware/jwt"
+	"gvp/middleware/jwt"
 )
 
 type resBody struct {
@@ -25,7 +25,11 @@ func InitRouter() *gin.Engine {
 
 	r.Use(gin.Recovery())
 
-	gin.SetMode(setting.ServerSetting.RunMode)
+	if  setting.ServerSetting.RunMode  == "debug"{
+		gin.SetMode(gin.DebugMode)
+	}else if setting.ServerSetting.RunMode  == "release"{
+		gin.SetMode(gin.ReleaseMode)
+	}
 
 	//鉴权
 	r.GET("/auth", api.GetAuth)
@@ -34,7 +38,7 @@ func InitRouter() *gin.Engine {
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	apiv1 :=  r.Group("/api/v1")
-	//apiv1.Use(jwt.JWT())
+	apiv1.Use(jwt.JWT())
 	{
 
 
@@ -75,7 +79,7 @@ func InitRouter() *gin.Engine {
 	}
 
 	clientv1 :=  r.Group("/api/v1/client")
-	//clientv1.Use(jwt.JWT())
+	clientv1.Use(jwt.JWT())
 	{
 		//获取服务商信息
 		clientv1.GET("/svc",v1.CliGetVoiceService)

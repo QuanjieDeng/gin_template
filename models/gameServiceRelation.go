@@ -103,7 +103,7 @@ func AddGameService(data map[string]interface {})  error {
 	return  nil
 }
 
-//软删除
+//软删除-根据ID
 func DeleteGameService(id int) error {
 	data := make(map[string]interface{})
 	data["deleted_on"] =   time.Now().Unix()
@@ -113,6 +113,30 @@ func DeleteGameService(id int) error {
 	}
 	return nil
 }
+
+//软删除-根据VoiceService ID
+func DeleteGameServiceBySvcId(id int) error {
+	data := make(map[string]interface{})
+	data["deleted_on"] =   time.Now().Unix()
+	err:= db.Model(&GameService{}).Where("service_id = ?", id).Updates(data).Error
+	if  err !=  nil{
+		return  err
+	}
+	return nil
+}
+
+//软删除-根据game ID
+func DeleteGameServiceByGameId(id int) error {
+	data := make(map[string]interface{})
+	data["deleted_on"] =   time.Now().Unix()
+	err:= db.Model(&GameService{}).Where("game_id = ?", id).Updates(data).Error
+	if  err !=  nil{
+		return  err
+	}
+	return nil
+}
+
+
 
 //硬删除
 func DeleteGameServiceHard(id int)   error {

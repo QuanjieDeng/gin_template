@@ -77,7 +77,8 @@ func (game *GameService) Edit() error {
 }
 
 func (game *GameService) Delete() error {
-	//TODO 软删除绑定关系
+	//软删除绑定关系
+	models.DeleteGameServiceByGameId(game.ID)
 	return  models.DeleteGame(game.ID)
 }
 

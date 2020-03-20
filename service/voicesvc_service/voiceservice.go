@@ -84,7 +84,8 @@ func (svc *VoiceService) Edit() error {
 }
 
 func (svc *VoiceService) Delete() error {
-	//TODO 软删除绑定关系
+	//软删除绑定关系
+	models.DeleteGameServiceBySvcId(svc.ID)
 	return  models.DeleteVoiceService(svc.ID)
 }
 

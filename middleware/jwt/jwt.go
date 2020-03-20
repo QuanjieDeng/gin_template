@@ -29,9 +29,14 @@ func JWT() gin.HandlerFunc {
 				name:=   claims.Username
 				pwd:=    claims.Password
 				log.Info("参与校验的用户名:",name,"密码：",pwd)
-				ret:=  models.CheckAuth(name,pwd)
+				ret,err:=  models.CheckAuth(name,pwd)
+				if  err!=  nil{
+					log.Error("校验用户名-密码 出错:",err.Error())
+					code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
+				}
 				if  ret  != true{
 					log.Info("用户名和密码不匹配")
+					code = e.ERROR_AUTH_CHECK_TOKEN_FAIL
 				}
 			}
 		}

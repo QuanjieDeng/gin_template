@@ -10,6 +10,7 @@ type App struct {
 	JwtSecret string
 	PageSize int
 	RuntimeRootPath string
+	AuthExpire int
 
 	LogSavePath string
 	LogSaveName string

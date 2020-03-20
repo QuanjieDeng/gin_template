@@ -59,7 +59,7 @@
 
 - 配置文件存放在 conf/conf.ini  根据实际情况进行配置
 
-## 编译
+### 编译
 
 - 项目基于go  mod模式开发，确保 go mod 打开
 - 切换到项目跟目录
@@ -68,13 +68,27 @@
 make 
 ``
 
-## 数据库初始化
+### 数据库初始化
 
 - sql/init.sql 为初始化数据库脚本，通过mysql执行即可完成数据库的初始化
 
-## 运行
+### 运行
 
 - 完成编译和数据初始化后，直接执行生成 gvp可执行文件即可
+
+## 接口访问鉴权
+
+- 统一使用jwt鉴权，访问者需要先使用username+passwd 申请token token值在一段时间后会过期  可以通过AuthExpire参数配置 默认是5小时
+- 在随后的请求中将得到的token作为URL参数的形式附加在每次请求中
+### 请求token的接口
+
+```
+http://192.168.94.145:8000/auth?username=admin&password=admin
+```
+### 接口请求格式
+```
+http://192.168.94.145:8000/api/v1/bind?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbiIsImV4cCI6MTU4NDcwMjA4MCwiaXNzIjoiZ2luLWJsb2cifQ.mzb0Rh104wntMTySy2SjVnE2WaKm9C7WV6NoFRShfug
+```
 
 ## Docker
 
@@ -82,6 +96,7 @@ make
 go mod  vendor  
 - docker    build  -t  avp  生成镜像文件
 - go run  -p 8000:8000  avp   运行时做端口映射
+
 
 ## 其他
 
