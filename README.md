@@ -100,6 +100,30 @@ go mod  vendor
 
 ## 其他
 
+## 使用Nginx部署
+
+- nginx  -t 查看nginx的配置文件位置 
+- 修改nginx.confg  添加如下配置
+
+```
+    upstream api.blog.com {
+        server 127.0.0.1:8001;
+        server 127.0.0.1:8002;
+    }
+
+    server {
+        listen       8081;
+        server_name  api.blog.com;
+
+        location / {
+            proxy_pass http://api.blog.com/;
+        }
+    }
+```
+
+- nginx  -s reload 重新加载配置即可
+
+
 ### mysql的安装 
 
 https://www.cnblogs.com/tianphone/p/10767886.html
@@ -108,4 +132,6 @@ https://www.cnblogs.com/tianphone/p/10767886.html
 
 - 项目需要mysql组件，可以直接在机器中安装mysql 或者是采用mysql容器的方式提供服务
 可以参考 https://www.jianshu.com/p/d6febf6f95e0
+
+
 
