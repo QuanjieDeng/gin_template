@@ -261,12 +261,10 @@ paths:
         required: true
         type: integer
       - description: 游戏名称
-        in: body
+        in: formData
         maxLength: 100
         name: game
-        required: true
-        schema:
-          type: string
+        type: string
       - description: 游戏类型
         enum:
         - 1
@@ -276,33 +274,27 @@ paths:
         - 5
         - 6
         - 7
-        in: body
+        in: formData
         name: gametype
-        required: true
-        schema:
-          type: integer
+        type: integer
       - description: 手机号码
-        in: body
+        in: formData
         maxLength: 100
         name: telnum
-        required: true
-        schema:
-          type: string
+        type: string
       - description: 本次修改人
-        in: body
+        in: formData
         maxLength: 100
         name: modifiedby
         required: true
-        schema:
-          type: string
+        type: string
       - description: 状态
         enum:
         - "0"
         - "1"
-        in: body
+        in: formData
         name: state
-        schema:
-          type: string
+        type: string
       produces:
       - application/json
       responses:
@@ -454,56 +446,48 @@ paths:
         required: true
         type: integer
       - description: 服务商名称
-        in: body
+        in: formData
         maxLength: 100
         name: name
-        schema:
-          type: string
+        type: string
       - description: 服务商appid
-        in: body
+        in: formData
         maxLength: 100
         name: appid
-        schema:
-          type: string
+        type: string
       - description: 服务商appkey
-        in: body
+        in: formData
         maxLength: 100
         name: appkey
-        schema:
-          type: string
+        type: string
       - description: 服务商userid
-        in: body
+        in: formData
         maxLength: 100
         name: userid
-        schema:
-          type: string
+        type: string
       - description: 服务商url
-        in: body
+        in: formData
         maxLength: 100
         name: url
-        schema:
-          type: string
+        type: string
       - description: 服务商描述信息
-        in: body
+        in: formData
         maxLength: 300
         name: description
-        schema:
-          type: string
+        type: string
       - description: 本次修改人
-        in: body
+        in: formData
         maxLength: 100
         name: modifiedby
         required: true
-        schema:
-          type: string
+        type: string
       - description: 状态
         enum:
         - 0
         - 1
-        in: body
+        in: formData
         name: state
-        schema:
-          type: integer
+        type: integer
       produces:
       - application/json
       responses:

@@ -11,8 +11,8 @@ type VoiceService struct {
 	UserId string `json:"userid"`
 	URL string `json:"url"`
 	Description string `json:"description"`
-	CreatedBy string `json:"created_by"`
-	ModifiedBy string `json:"modified_by"`
+	CreatedBy string `json:"createdby"`
+	ModifiedBy string `json:"modifiedby"`
 	State int `json:"state"`
 
 	GameService []GameService

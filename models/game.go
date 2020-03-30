@@ -9,8 +9,8 @@ type Game struct {
 	AppId string `json:"appid"`
 	AppKey string `json:"appkey"`
 	TelNum string `json:"telnum"`
-	CreatedBy string `json:"created_by"`
-	ModifiedBy string `json:"modified_by"`
+	CreatedBy string `json:"createdby"`
+	ModifiedBy string `json:"modifiedby"`
 	State int `json:"state"`
 }
 
