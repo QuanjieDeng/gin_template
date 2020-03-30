@@ -16,35 +16,96 @@
 ## 项目结构说明
 
 ```
-    ├── gvp
-    │   ├── docs     //swag 生成的接口文件说明
-    │   │   ├── docs.go
-    │   │   ├── swagger.json
-    │   │   └── swagger.yaml
-    │   ├── middleware   //中间件
-    │   │   └── jwt
-    │   │       └── jwt.go   
-    │   ├── models      //数据模型
-    │   │   ├── auth.go
-    │   │   ├── models.go
-    │   ├── pkg        //公共包
-    │   │   ├── e 错误
-    │   │   │   ├── code.go    //错误码
-    │   │   │   └── msg.go     //错误码说明
-    │   │   ├── logging 日志       
-    │   │   │   ├── file.go
-    │   │   │   └── log.go
-    │   │   ├── setting 配置
-    │   │   │   └── setting.go
-    │   │   └── util 功能函数
-    │   │       ├── jwt.go
-    │   │       └── pagination.go
-    │   └── routers 路由
-    │       ├── api
-    │       │   ├── auth.go
-    │       │   └── v1  v1版本 
-    │       └── router.go
-       main.go  入口文件
+├── conf   配置文件存放处
+│   └── app.ini
+├── cron  定时任务
+│   ├── cron.go
+│   ├── go.mod
+│   ├── go.sum
+│   ├── README.md
+│   └── vendor
+│       ├── github.com
+│       │   └── robfig
+│       │       └── cron
+│       │           ├── constantdelay.go
+│       │           ├── cron.go
+│       │           ├── doc.go
+│       │           ├── LICENSE
+│       │           ├── parser.go
+│       │           ├── README.md
+│       │           └── spec.go
+│       └── modules.txt
+├── Dockerfile   生成镜像的DockerFile
+├── docs   swager生成的DOC文件
+│   ├── docs.go
+│   ├── swagger.json
+│   └── swagger.yaml
+├── go.mod
+├── go.sum
+├── main.go    程序主入口
+├── Makefile   
+├── middleware  中间件
+│   └── jwt
+│       └── jwt.go
+├── models     数据模型
+│   ├── auth.go
+│   ├── game.go
+│   ├── gameServiceRelation.go
+│   ├── models.go
+│   └── voiceService.go
+├── pkg      工具包
+│   ├── app
+│   │   ├── form.go
+│   │   ├── request.go
+│   │   └── response.go
+│   ├── e
+│   │   ├── code.go
+│   │   ├── gametype.go
+│   │   └── msg.go
+│   ├── file
+│   │   └── file.go
+│   ├── logging
+│   │   ├── file.go
+│   │   └── log.go
+│   ├── setting
+│   │   └── setting.go
+│   └── util
+│       ├── jwt.go
+│       └── pagination.go
+├── README.md
+├── routers   路由规划
+│   ├── api
+│   │   ├── auth.go
+│   │   └── v1
+│   │       ├── bindmabager.go
+│   │       ├── client.go
+│   │       ├── game.go
+│   │       └── voiceservice.go
+│   └── router.go
+├── runtime
+│   └── logs
+├── service    服务封装
+│   ├── auth_service
+│   │   └── auth.go
+│   ├── bind_service
+│   │   └── bind.go
+│   ├── client_service
+│   │   └── client.go
+│   ├── game_service
+│   │   └── game.go
+│   └── voicesvc_service
+│       └── voiceservice.go
+├── sql
+│   └── init.sql
+├── test    单元测试文件夹
+│   ├── auth_test.go
+│   ├── bind_test.go
+│   ├── conf
+│   │   └── app.ini
+│   ├── game_test.go
+│   ├── runtime
+│   │   └── logs
+│   └── voiceservice_test.go
 ```
 
 
@@ -96,6 +157,23 @@ http://192.168.94.145:8000/api/v1/bind?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ
 go mod  vendor  
 - docker    build  -t  avp  生成镜像文件
 - go run  -p 8000:8000  avp   运行时做端口映射
+
+
+
+## Unit-Test  
+
+### 说明
+
+- 测试框架 httptest+Convery + Stub
+- 测试代码在test文件夹下
+- conf文件夹是测试项目的配置文件，他是直接从项目的conf文件夹拷贝来的，由于测试需要一些特殊的配置所以单独使用了一个配置文件
+- 测试使用单独的DB，建议创建单独的数据库gvp_test，然后在conf/app.ini的配置文件中修改[database]Name配置项
+- 在创建好DB后，运行sql/init.sql文件创建数据库表
+- 运行测试，切换到test目录执行以下命令
+```
+    goconvey   -host="0.0.0.0" -port=8090    
+```
+- 在浏览器中访问  http://youri-p:8090  即可看到Convery提供的可视化测试界面
 
 
 ## 其他

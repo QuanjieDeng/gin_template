@@ -187,11 +187,11 @@ type EditGameForm struct {
 // @Summary 修改游戏信息
 // @Produce  json
 // @Param id path int  true  "游戏ID" mininum(1)
-// @Param game body string  true  "游戏名称" maxLength(100)
-// @Param gametype body int true  "游戏类型" Enums(1,2,3,4,5,6,7)
-// @Param telnum body string true  "手机号码" maxLength(100)
-// @Param modifiedby body string true  "本次修改人" maxLength(100)
-// @Param state body string false  "状态" Enums(0,1)
+// @Param game formData string  false  "游戏名称" maxLength(100)
+// @Param gametype formData int false  "游戏类型" Enums(1,2,3,4,5,6,7)
+// @Param telnum formData string false  "手机号码" maxLength(100)
+// @Param modifiedby formData string true  "本次修改人" maxLength(100)
+// @Param state formData string false  "状态" Enums(0,1)
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/game/{id} [put]

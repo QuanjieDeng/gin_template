@@ -196,14 +196,14 @@ type EditServiceForm struct {
 // @Summary 修改服务商信息
 // @Produce  json
 // @Param id path int  true  "服务商ID" mininum(1)
-// @Param name body string  false  "服务商名称" maxLength(100)
-// @Param appid body string false  "服务商appid" maxLength(100)
-// @Param appkey body string false  "服务商appkey" maxLength(100)
-// @Param userid body string false  "服务商userid" maxLength(100)
-// @Param url body string false  "服务商url" maxLength(100)
-// @Param description body string false  "服务商描述信息" maxLength(300)
-// @Param modifiedby body string true  "本次修改人" maxLength(100)
-// @Param state body int false  "状态" Enums(0,1)
+// @Param name formData string  false  "服务商名称" maxLength(100)
+// @Param appid formData string false  "服务商appid" maxLength(100)
+// @Param appkey formData string false  "服务商appkey" maxLength(100)
+// @Param userid formData string false  "服务商userid" maxLength(100)
+// @Param url formData string false  "服务商url" maxLength(100)
+// @Param description formData string false  "服务商描述信息" maxLength(300)
+// @Param modifiedby formData string true  "本次修改人" maxLength(100)
+// @Param state formData int false  "状态" Enums(0,1)
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/svc/{id} [put]

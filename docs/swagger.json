@@ -348,13 +348,10 @@
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "游戏名称",
                         "name": "game",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "enum": [
@@ -366,45 +363,35 @@
                             6,
                             7
                         ],
+                        "type": "integer",
                         "description": "游戏类型",
                         "name": "gametype",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "手机号码",
                         "name": "telnum",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "本次修改人",
                         "name": "modifiedby",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "enum": [
                             "0",
                             "1"
                         ],
+                        "type": "string",
                         "description": "状态",
                         "name": "state",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     }
                 ],
                 "responses": {
@@ -628,79 +615,63 @@
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "服务商名称",
                         "name": "name",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "服务商appid",
                         "name": "appid",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "服务商appkey",
                         "name": "appkey",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "服务商userid",
                         "name": "userid",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "服务商url",
                         "name": "url",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 300,
+                        "type": "string",
                         "description": "服务商描述信息",
                         "name": "description",
-                        "in": "body",
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData"
                     },
                     {
                         "maxLength": 100,
+                        "type": "string",
                         "description": "本次修改人",
                         "name": "modifiedby",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "in": "formData",
+                        "required": true
                     },
                     {
                         "enum": [
                             0,
                             1
                         ],
+                        "type": "integer",
                         "description": "状态",
                         "name": "state",
-                        "in": "body",
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "in": "formData"
                     }
                 ],
                 "responses": {

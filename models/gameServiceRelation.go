@@ -8,8 +8,8 @@ import (
 type GameService struct {
 	ID int `gorm:"primary_key" json:"id"`
 	Game string `json:"game"`
-	ServiceId int`json:"service_id" `
-	GameId int `json:"game_id"`
+	ServiceId int`json:"serviceid" `
+	GameId int `json:"gameid"`
 	DeletedOn int `json:"deleted_on"`
 }
 
