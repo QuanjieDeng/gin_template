@@ -160,6 +160,9 @@ go mod  vendor
 
 
 
+## K8S
+- 如果需要部署在K8S环境中，相关的部署文件存放在 K8SPlateFrom 文件夹下面，参考其中的说明文档即可
+
 ## Unit-Test  
 
 ### 说明
